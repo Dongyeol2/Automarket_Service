@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderinfoMapper">
+	<!-- 주문하기 -->
+	<insert id="addorder" parameterType="orderinfovo" useGeneratedKeys="true" keyProperty="orderid">
+		
+		insert into ORDERINFO
+		(ORDERID, USERID, ORDERDATE, RECEIPTKEY, RECEIPTADDR, RECEIPTLATI,
+		RECEIPTLONG, CARID, TOTALPRICE)
+		select  ORDER_SEQ.NEXTVAL AS orderid, #{userid}, sysdate, #{receiptkey}, #{receiptaddr}, 
+		#{receiptlati}, #{receiptlong}, #{carid}, #{totalprice}
+		FROM DUAL
+		<selectKey keyProperty="orderid" resultType="String" order="AFTER">
+	    select ORDER_SEQ.CURRVAL AS orderid FROM DUAL
+	    </selectKey>
+	</insert>
+	
+	<!--주문하기 주문 상품 상세 -->
+	<insert id="detailprod" parameterType="orderdetailvo" >
+		insert into orderdetail
+		(orderid, prodid, prodnm, prodprice, ordercnt)
+		select #{orderid}, #{prodid}, p.prodnm, p.prodprice, #{ordercnt}
+		from product p
+		where p.prodid = #{prodid}
+	
+	</insert>
+	
+	<!-- 개별 주문 상품 상세 -->
+	<select id="detailorder" resultType="orderdetailvo">
+		select d.orderid, p.prodid, p.prodnm, p.prodprice, d.ordercnt, nvl(p.imgpath, '') imgpath 
+		from orderdetail d, product p
+		where d.prodid = p.prodid and d.orderid = #{orderid}
+	</select>
+	
+	<!-- 사용자별 개별 주문내역 rkey -->
+	<select id="orderinforkey" resultType="orderinfovo">
+		select receiptkey, orderid, userid, orderdate, receiptaddr, carid, totalprice
+		from orderinfo
+		where receiptkey = #{receiptkey}
+	</select>
+	
+	<!-- 사용자별 개별 주문내역 id-->
+	<select id="orderinfoid" resultType="orderinfovo">
+		select receiptkey, orderid, userid, orderdate, receiptaddr, carid, totalprice
+		from orderinfo
+		where orderid = #{orderid}
+	</select>
+	
+	<!--  사용자별 전체 주문내역 -->
+	<select id="orderinfolist" resultType="orderinfovo">
+		select orderid, userid, orderdate, receiptaddr, carid, totalprice, receiptkey
+		from orderinfo
+		where userid = #{userid}
+		order by orderdate desc
+	</select>
+
+</mapper>
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+ 
+<mapper namespace='application.mappers.CarMapper'>
+ 
+  <resultMap type='application.vo.CarVO' id='carResult'>
+    <id property='carId' column='carId'/>
+    <result property='carStatus' column='carStatus'/>
+    <result property='destLati' column='destLati'/>  
+    <result property='destLong' column='destLong'/>  
+   </resultMap>
+ 
+  <select id='getAllCars' resultMap='carResult'>
+   SELECT carId,carStatus,nvl(destLati,0.0) destLati,nvl(destLong,0.0) destLong  
+	FROM Car
+	WHERE carStatus IN ('00','04')
+  </select>
+  <select id="getCarSel" resultType="carvo">
+  SELECT carid FROM Car
+   WHERE carStatus='00' and rownum = 1
+  </select>
+  <update id="setCarLocation">
+  UPDATE Car
+  SET destlati=#{destlati},
+  destlong=#{destlong}
+  WHERE carid=#{carid}
+  </update>
+  <update id="setCarStatus" parameterType="hashMap">
+  UPDATE Car
+  SET carstatus=#{carstatus},
+  moddate=SYSDATE
+  WHERE carid=#{carid}
+  </update>
+  <update id="setCarUpdate" parameterType="cardetail">
+  UPDATE Car
+  SET 
+  DestLati=#{latitude}, 
+  DestLong=#{longitude}, 
+  Temp=#{temp}, 
+  Battery=#{battery}, 
+  CarStart=#{startflag}, 
+  CarError=#{error}, 
+  ModDate=SYSDATE
+  WHERE carid=#{carid}
+  </update>
+  <insert id="setCarLogInsert" parameterType="cardetail">
+  INSERT INTO CarLog
+(carlogseq, CARID, TEMP, BATTERY, CARLATI, CARLONG, CARERROR)
+SELECT
+CARLOG_SEQ.NEXTVAL,
+#{carid},
+#{temp},
+#{battery},
+#{latitude},
+#{longitude},
+#{error}
+FROM DUAL
+  
+  </insert>
+ 
+</mapper>

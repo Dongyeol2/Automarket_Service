@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">automarket_app</string>
+
+    <!-- 로그인 -->
+    <string name="Email_hint">Email</string>
+    <string name="Password_hint">Password</string>
+    <string name="login">로그인</string>
+    <string name="remember_check">로그인 정보 기억하기</string>
+    <string name="aes_key">automarket-key!!@#%</string>
+
+    <!-- 회원가입 -->
+    <string name="Name_hint">이름</string>
+    <string name="join">가입</string>
+    <string name="cancel">취소</string>
+    <string name="register">회원가입</string>
+    <string name="RepeatPassword_hint_">Repeat Password</string>
+    <string name="RepeatPassword_hint">Repeat\nPassword</string>
+    <string name="check">중복체크</string>
+
+    <!-- 주문하기 -->
+    <string name="order">주문하기</string>
+    <string name="proddetail">상품상세</string>
+    <string name="order2">주문서</string>
+    <string name="car_select">차량선택</string>
+    <string name="order_submit">주문완료</string>
+
+    <!-- 캐시충전하기 -->
+    <string name="cash">캐시충전</string>
+    <string name="cash_now">현재캐시</string>
+    <string name="cash_won">원</string>
+    <string name="cash_history">충전내역</string>
+    <string name="cash_hint">충전금액(원) 입력</string>
+    <string name="do_cash">충전하기</string>
+
+
+    <!-- 내 정보 -->
+    <string name="information">내 정보</string>
+    <string name="Email">이메일</string>
+    <string name="Email_nim">님</string>
+    <string name="order_history">주문내역</string>
+    <string name="logout">로그아웃</string>
+
+    <!-- 알림 -->
+    <string name="notice">알림</string>
+
+    <!-- 장바구니 -->
+    <string name="cart">장바구니</string>
+    <string name="total_price">총 금액</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="delete">X</string>
+    <string name="prod_price">상품가격</string>
+    <string name="prod_name">상품이름</string>
+    <string name="card_add">장바구니 담기</string>
+
+    <!-- 주문내역 -->
+    <string name="order_id">주문 ID</string>
+    <string name="order_num">주문번호 : </string>
+    <string name="order_date">주문 날짜</string>
+    <string name="order_total_price">총 가격</string>
+    <string name="order_receiptkey">수령인증키 : </string>
+    <string name="order_receiptkey_output">수령인증키</string>
+
+    <!--공통-->
+    <string name="card_close">닫기</string>
+    <string name="setting">설정</string>
+
+    <string name="api_url">http://70.12.115.61:8080/automarket</string>
+    <string name="api_key"></string>
+    <string name="tcp_server_ip">70.12.115.50</string>
+    <string name="tcp_server_port">6789</string>
+
+<!--
+    <string name="api_url">http://192.168.0.16:8081/automarket</string>
+    <string name="api_key"></string>
+    <string name="tcp_server_ip">192.168.0.16</string>
+    <string name="tcp_server_port">6789</string>
+-->
+
+</resources>
